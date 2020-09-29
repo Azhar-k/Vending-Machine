@@ -13,9 +13,11 @@ public class ItemDao {
     }
 
     public static ItemDao getInstance(){
+
         return itemDao;
     }
     public List<Item> getItemsList() {
+
         return database.getItemsList();
     }
 

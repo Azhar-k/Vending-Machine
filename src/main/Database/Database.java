@@ -60,6 +60,7 @@ public class Database {
     }
 
     public boolean deductItem(int selectedItemId, int quantity){
+        //update the stock of item when a purchase happen
         Item item = itemsList.get(selectedItemId);
         int currentCount = item.getCount();
         int updatedCount = currentCount-quantity;

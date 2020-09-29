@@ -14,8 +14,8 @@ public class PurchaseController {
     List<Item> itemList = itemController.getItemList();
 
     private int selectedItemId;
-    private int requiredQuantity;
-    private int purchasableQuantity;
+    private int requiredQuantity; //quantity requested by user
+    private int purchasableQuantity;//quantity that can be purchased by user
     private int totalAmount;
 
     private boolean isQuantityAvailable;
@@ -84,7 +84,7 @@ public class PurchaseController {
         int availableQuantity=itemList.get(selectedItemId).getCount();
 
         if(this.getRequiredQuantity()<=availableQuantity){
-            this.setPurchasableQuantity(requiredQuantity);
+            this.setPurchasableQuantity(requiredQuantity);//required quantity is available and can be purchased.
             this.setIsQuantityAvailable(true);
         }
         else{

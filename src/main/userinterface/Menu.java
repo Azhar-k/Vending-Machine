@@ -25,13 +25,12 @@ public class Menu {
     }
 
     public int askUserInputSelectedItemId(){
-        //Ask the user to select an item
+
         System.out.println("Enter the id of the item you need : ");
         return scanner.nextInt();
 
     }
     public int askUserInputSelectedItemCount(){
-        //Ask the user to enter the quantity of item needed .
         System.out.println("Please Enter the count you needed : ");
         return scanner.nextInt();
     }
@@ -40,14 +39,13 @@ public class Menu {
 
     public boolean askForPayment(int totalAmount)
     {
-        //get the details of selected item
 
         Scanner scanner=new Scanner(System.in);
         System.out.println("Insert Rs "+totalAmount+" :");
         int insertedMoney =scanner.nextInt();
         while(insertedMoney<totalAmount)
         {
-
+            //If inserted money is insufficient, user should add more money
             System.out.println("Sorry ! Insufficient Money...please add Rs."+(totalAmount-insertedMoney));
             int moreMoney=scanner.nextInt();
             insertedMoney+=moreMoney;

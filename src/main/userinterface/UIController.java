@@ -56,7 +56,7 @@ public class UIController {
 
         purchaseController.validateQuantity();
         if(purchaseController.getIsQuantityAvailable()){
-
+            //if quantity is validated, ask for payment
             menu.askForPayment(purchaseController.getPurchasableQuantity()*itemList.get(purchaseController.getSelectedItemId()).getPrice());
             purchaseController.validatePayment();
             if(purchaseController.getIsPaymentDone()){

@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class ItemController {
     private static ItemController itemController=new ItemController();
     private  ItemManager itemManager=ItemManager.getInstance();
+
 	private List<Item> itemList=itemManager.getItemsList();
 
     private ItemController(){

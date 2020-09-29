@@ -27,16 +27,6 @@ public class ItemManager {
         return itemList;
     }
 
-    public  boolean updateStock(int selectedItem,int quantity)
-	{
-		//update the count of item in database
-		int count= itemList.get(selectedItem).getCount();
-		count=count-quantity;
-		itemList.get(selectedItem).setCount(count);
-		return true;
-
-	}
-
 //    public List<Biscuit> getBiscuitsList() {
 //        return itemDao.getBiscuitsList();
 //    }
