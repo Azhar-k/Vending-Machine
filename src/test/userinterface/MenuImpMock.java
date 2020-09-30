@@ -4,11 +4,18 @@ import main.entities.Item;
 import main.userinterface.Menu;
 
 import java.util.List;
-import java.util.Scanner;
 
 public class MenuImpMock implements Menu {
-    Scanner scanner=new Scanner(System.in);
+    private int selectedItemIdInputFromUser,selectedItemCountInputFromUser;
+    private boolean paymentInputFromUser,continueWithAvailableQuantityInputFromUser,continueAnotherPurchaseInputFromUSer;
 
+    public MenuImpMock(int selectedItemIdInputFromUser, int selectedItemCountInputFromUser, boolean paymentInputFromUser, boolean continueWithAvailableQuantityInputFromUser, boolean continueAnotherPurchaseInputFromUSer) {
+        this.selectedItemIdInputFromUser = selectedItemIdInputFromUser;
+        this.selectedItemCountInputFromUser = selectedItemCountInputFromUser;
+        this.paymentInputFromUser = paymentInputFromUser;
+        this.continueWithAvailableQuantityInputFromUser = continueWithAvailableQuantityInputFromUser;
+        this.continueAnotherPurchaseInputFromUSer = continueAnotherPurchaseInputFromUSer;
+    }
 
     public void displayItems(List<Item> itemList)
     {
@@ -17,11 +24,11 @@ public class MenuImpMock implements Menu {
 
     public int askUserInputSelectedItemId(){
 
-     return 6;
+     return selectedItemIdInputFromUser;
 
     }
     public int askUserInputSelectedItemCount(){
-       return 10;
+       return this.selectedItemCountInputFromUser;
     }
 
 
@@ -29,11 +36,16 @@ public class MenuImpMock implements Menu {
     public boolean askForPayment(int totalAmount)
     {
 
-       return true;
+       return this.paymentInputFromUser;
     }
 
-    public String askTocontinueWithAvailableQuantity(){
-       return "y";
+    public boolean askTocontinueWithAvailableQuantity(){
+       return this.continueWithAvailableQuantityInputFromUser;
+    }
+
+    @Override
+    public boolean askUserForAnotherPurchase() {
+        return continueAnotherPurchaseInputFromUSer;
     }
 
 

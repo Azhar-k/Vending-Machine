@@ -9,5 +9,6 @@ public interface Menu {
     public int askUserInputSelectedItemId();
     public int askUserInputSelectedItemCount();
     public boolean askForPayment(int totalAmount);
-    public String askTocontinueWithAvailableQuantity();
+    public boolean askTocontinueWithAvailableQuantity();
+    public boolean askUserForAnotherPurchase();
 }

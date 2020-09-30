@@ -1,6 +1,5 @@
 package test.userinterface;
 
-import main.userinterface.MenuImp;
 import main.userinterface.UIController;
 import org.junit.*;
 import org.junit.Before;
@@ -9,20 +8,73 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class UIControllerTest {
-    UIController uiController ;
+    private int selectedItemIdInputFromUser,selectedItemCountInputFromUser;
+    private boolean paymentInputFromUser,continueWithAvailableQuantityInputFromUser,continueAnotherPurchaseInputFromUSer;
+
     @Before
     public void init(){
-        uiController=new UIController(new MenuImpMock());
+
     }
     @Test
     public void purchaseWithValidQuantity(){
-
-       assertTrue(uiController.purchase(6,10));
+        selectedItemCountInputFromUser = 10;
+        selectedItemIdInputFromUser =6;
+        paymentInputFromUser = true;
+        continueWithAvailableQuantityInputFromUser = true;
+        continueAnotherPurchaseInputFromUSer=true;
+        UIController uiController=new UIController(new MenuImpMock(
+                selectedItemIdInputFromUser,
+                selectedItemCountInputFromUser,
+                paymentInputFromUser,
+                continueWithAvailableQuantityInputFromUser,
+                continueAnotherPurchaseInputFromUSer));
+       assertTrue(uiController.purchase(selectedItemIdInputFromUser,selectedItemCountInputFromUser));
     }
     @Test
-    public void purchaseWithInValidQuantity(){
+    public void purchaseWithInValidQuantityAndUserProceed(){
+        selectedItemCountInputFromUser = 100;
+        selectedItemIdInputFromUser =6;
+        paymentInputFromUser = true;
+        continueWithAvailableQuantityInputFromUser = true;
+        continueAnotherPurchaseInputFromUSer=true;
+        UIController uiController=new UIController(new MenuImpMock(
+                selectedItemIdInputFromUser,
+                selectedItemCountInputFromUser,
+                paymentInputFromUser,
+                continueWithAvailableQuantityInputFromUser, continueAnotherPurchaseInputFromUSer));
+        assertFalse(uiController.purchase(selectedItemIdInputFromUser,selectedItemCountInputFromUser));
+    }
+    @Test
+    public void purchaseWithInValidQuantityAndUserTerminate(){
+        selectedItemCountInputFromUser = 100;
+        selectedItemIdInputFromUser =6;
+        paymentInputFromUser = true;
+        continueWithAvailableQuantityInputFromUser = false;
+        continueAnotherPurchaseInputFromUSer=true;
+        UIController uiController=new UIController(new MenuImpMock(
+                selectedItemIdInputFromUser,
+                selectedItemCountInputFromUser,
+                paymentInputFromUser,
+                continueWithAvailableQuantityInputFromUser,
+                continueAnotherPurchaseInputFromUSer));
+        assertFalse(uiController.purchase(selectedItemIdInputFromUser,selectedItemCountInputFromUser));
+    }
 
-        assertFalse(uiController.purchase(6,100));
+    @Test
+    public void startActivityTest(){
+        selectedItemCountInputFromUser = 100;
+        selectedItemIdInputFromUser =6;
+        paymentInputFromUser = true;
+        continueWithAvailableQuantityInputFromUser = false;
+        continueAnotherPurchaseInputFromUSer=false;
+        UIController uiController=new UIController(new MenuImpMock(
+                selectedItemIdInputFromUser,
+                selectedItemCountInputFromUser,
+                paymentInputFromUser,
+                continueWithAvailableQuantityInputFromUser,
+                continueAnotherPurchaseInputFromUSer));
+        uiController.startActivity();
+
     }
 
 }

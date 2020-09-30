@@ -39,18 +39,16 @@ public class UIController {
 
     public void startActivity()
     {
-        String choice;
+        boolean choice;
         do
         {
             menu.displayItems(itemList);
             this.setSelectedItemId(menu.askUserInputSelectedItemId());
             this.setSelectedQuantity(menu.askUserInputSelectedItemCount());
             purchase(this.getSelectedItemId(),this.getSelectedQuantity());
+            choice=menu.askUserForAnotherPurchase();
 
-            System.out.println("Do you want another purchase ?(yes/no) : ");
-            Scanner scanner=new Scanner(System.in);
-            choice=scanner.next();
-        }while(choice.equals("yes"));
+        }while(choice);
 
 
     }
@@ -79,10 +77,15 @@ public class UIController {
         }
         else{
             System.out.println("desired quantity is not available. Available quantity is : "+purchaseController.getPurchasableQuantity());
-            String ch = menu.askTocontinueWithAvailableQuantity();
-            if(ch.equalsIgnoreCase("y")){
+            boolean isContinueWithAvailableQuantity = menu.askTocontinueWithAvailableQuantity();
+            if(isContinueWithAvailableQuantity){
+                System.out.println("User proceeds with available quantity ");
                 this.setSelectedQuantity(purchaseController.getPurchasableQuantity());
                 purchase(this.getSelectedItemId(),this.getSelectedQuantity());
+            }
+            else{
+                System.out.println("user don;t want to proceed with available quantity ");
+                System.out.println("Purchase cancelled ");
             }
         }
         return false;

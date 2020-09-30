@@ -54,10 +54,26 @@ public class MenuImp implements Menu {
         return true;
     }
 
-    public String askTocontinueWithAvailableQuantity(){
+    public boolean askTocontinueWithAvailableQuantity(){
         System.out.println("do you want to continue with available quantity ? (y/n) ");
         String ch = scanner.next();
-        return ch;
+        if(ch.equals("y")){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean askUserForAnotherPurchase() {
+        String choice;
+        System.out.println("Do you want another purchase ?(yes/no) : ");
+        Scanner scanner=new Scanner(System.in);
+        choice=scanner.next();
+        if(choice.equals("yes")){
+            return true;
+        }
+        return false;
+
     }
 
 
