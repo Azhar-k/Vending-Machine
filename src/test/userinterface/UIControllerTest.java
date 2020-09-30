@@ -1,7 +1,7 @@
 package test.userinterface;
 
 import main.userinterface.UIController;
-import org.junit.*;
+import org.junit.Test;
 import org.junit.Before;
 
 import static org.junit.Assert.assertFalse;
