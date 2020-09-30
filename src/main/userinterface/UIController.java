@@ -10,12 +10,16 @@ import java.util.Scanner;
 public class UIController {
     ItemController itemController=ItemController.getInstance();
     PurchaseController purchaseController ;
-    Menu menu = new Menu();
+    Menu menu;
 
     int selectedItemId;
     int selectedQuantity;
 
     List<Item> itemList = itemController.getItemList();
+
+    public UIController(Menu menu) {
+        this.menu = menu;
+    }
 
     public int getSelectedItemId() {
         return this.selectedItemId;
@@ -51,7 +55,7 @@ public class UIController {
 
     }
 
-    public void purchase(int selectedItemId,int selectedQuantity){
+    public boolean purchase(int selectedItemId, int selectedQuantity){
         purchaseController=new PurchaseController(selectedItemId,selectedQuantity);
 
         purchaseController.validateQuantity();
@@ -63,6 +67,7 @@ public class UIController {
                 purchaseController.deductItem();
                 if(purchaseController.getIsQuantityDeducted()){
                     System.out.println("Purchase successfull");
+                    return true;
                 }
                 else{
                     System.out.println("Purchase failed.Please try again");
@@ -80,5 +85,6 @@ public class UIController {
                 purchase(this.getSelectedItemId(),this.getSelectedQuantity());
             }
         }
+        return false;
     }
 }
